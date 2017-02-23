@@ -33,6 +33,20 @@ public class PlayerController : MonoBehaviour {
             if (hitInfo)
                 print("Interacting");
         }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector3 ray =  Camera.main.ScreenToWorldPoint((Input.mousePosition)) - transform.position;
+            Debug.DrawRay(transform.position, ray);
+            
+            RaycastHit2D hitInfo = Physics2D.Linecast(transform.position, ray, LayerMask.GetMask("Draggable"));
+            if (hitInfo)
+            {
+                DistanceJoint2D joint = hitInfo.rigidbody.GetComponent<DistanceJoint2D>();
+                joint.anchor = hitInfo.transform.InverseTransformPoint(hitInfo.point);
+                joint.connectedBody = rb;
+            }
+        }
         #endregion
     }
 }
