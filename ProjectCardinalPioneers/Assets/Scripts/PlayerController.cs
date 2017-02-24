@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
         #endregion
 
         #region Interact Input
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit2D hitInfo = Physics2D.Linecast(transform.position, (Vector2)transform.position + _direction, LayerMask.GetMask("Interactables"));
             if (hitInfo)
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    //Updates position of the LineRenderer to match the DistanceJoint2D
     private void UpdateWire()
     {
         if(_hook.enabled)
