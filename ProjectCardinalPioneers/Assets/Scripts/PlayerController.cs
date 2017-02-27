@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour {
 
         UpdateWire();
     }
+
     //Casts a ray and interacts with hit object
     void FireInteract()
     {
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, ray, InteractDistance, LayerMask.GetMask("Interactables"));
         if (hitInfo)
         {
-            print("Interacting");
+            hitInfo.transform.GetComponent<MenuRefHandler>().Interact();
         }
     }
 

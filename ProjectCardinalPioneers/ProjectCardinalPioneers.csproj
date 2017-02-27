@@ -76,8 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\GameState\Clock.cs" />
+    <Compile Include="Assets\Scripts\GameState\Resources.cs" />
+    <Compile Include="Assets\Scripts\InteractionScripts\CropInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\MenuReferences\MenuRefHandler.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\resources.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\TintShader.shader" />
