@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\InteractionScripts\CropInteractionScript.cs" />
     <Compile Include="Assets\Scripts\MenuReferences\MenuRefHandler.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PodSlotHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\TintShader.shader" />

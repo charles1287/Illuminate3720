@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    
+    public float Battery = 100f;
 
     Rigidbody2D _rb;
     DistanceJoint2D _hook;
     LineRenderer _wire;
 
+    public float PowerRate;
     public float TowcableDistance;
     public float InteractDistance;
     public float MovementScale;
@@ -25,16 +28,16 @@ public class PlayerController : MonoBehaviour {
         //gets raw movement input
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        _rb.AddForce(MovementScale * input.normalized);
+        _rb.AddForce(MovementScale * Time.deltaTime * 60 * input.normalized);
         #endregion
 
         #region Interact Input
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             FireInteract();
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(1))
         {
             if (!_hook.enabled)
                 FireHook();
@@ -48,18 +51,18 @@ public class PlayerController : MonoBehaviour {
         #endregion
 
         UpdateWire();
+
+        UpdateBattery();
     }
 
     //Casts a ray and interacts with hit object
     void FireInteract()
     {
-        Vector3 ray = Camera.main.ScreenToWorldPoint((Input.mousePosition)) - transform.position;
-        Debug.DrawRay(transform.position, ray, Color.cyan, 0.5f, false);
-
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, ray, InteractDistance, LayerMask.GetMask("Interactables"));
-        if (hitInfo)
+        Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D col = Physics2D.OverlapPoint(point, LayerMask.GetMask("Interactables"));
+        if (col != null)
         {
-            hitInfo.transform.GetComponent<MenuRefHandler>().Interact();
+            col.transform.GetComponent<MenuRefHandler>().Interact();
         }
     }
 
@@ -90,4 +93,9 @@ public class PlayerController : MonoBehaviour {
             _wire.SetPositions(pos);
         }
     } 
+
+    void UpdateBattery()
+    {
+        Battery -= PowerRate * Time.deltaTime;
+    }
 }

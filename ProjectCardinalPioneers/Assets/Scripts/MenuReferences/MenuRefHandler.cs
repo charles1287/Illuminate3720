@@ -24,4 +24,5 @@ public class MenuRefHandler : MonoBehaviour {
         player.GetComponent<PlayerController>().enabled = true;
         Menu.SetActive(false);
     }
+    
 }

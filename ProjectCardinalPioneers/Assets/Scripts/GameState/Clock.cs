@@ -9,7 +9,8 @@ public class Clock : MonoBehaviour {
     //The current time of the day represented as seconds
     float _time;
 
-    public float Timescale;
+    public static float Timescale;
+
     public CameraScript cam;
     public Color DawnColor;
     public Color DayColor;
