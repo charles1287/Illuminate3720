@@ -5,6 +5,9 @@ using UnityEngine;
 public class MenuRefHandler : MonoBehaviour {
 
     GameObject player;
+    GameObject Water;
+    GameObject Crops;
+    GameObject Power;
 
     public GameObject Menu;
 
