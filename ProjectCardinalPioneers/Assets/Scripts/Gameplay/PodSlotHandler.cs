@@ -20,17 +20,15 @@ public class PodSlotHandler : MonoBehaviour {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
                 GetComponent<Collider2D>().enabled = false;
+
+                //Activate the selection menu
+                other.transform.Find("Pod Select").gameObject.SetActive(true);
             }
         }
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	void SnapPodToSlot()
+    {
+
+    }
 }
