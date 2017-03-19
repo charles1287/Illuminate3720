@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
+    const float _timeScale = 500f;
 
     int _day;
     //The current time of the day represented as seconds
-    float _time;
-
-    public static float Timescale;
-
+    public float _timeSeconds;
+    
     public CameraScript cam;
     public Color DawnColor;
     public Color DayColor;
@@ -19,24 +18,24 @@ public class Clock : MonoBehaviour {
     Color getTintColor()
     {
         float quarter = _secondsPerDay / 4;
-        if(0.0 <= _time && _time < quarter)
+        if(0.0 <= _timeSeconds && _timeSeconds < quarter)
         {
-            float factor = (_time) / quarter;
+            float factor = (_timeSeconds) / quarter;
             return Color.Lerp(NightColor, DawnColor, factor);
         }
-        else if (quarter <= _time && _time < 2 * quarter)
+        else if (quarter <= _timeSeconds && _timeSeconds < 2 * quarter)
         {
-            float factor = (_time - quarter) / quarter;
+            float factor = (_timeSeconds - quarter) / quarter;
             return Color.Lerp(DawnColor, DayColor, factor);
         }
-        else if (2 * quarter <= _time && _time < 3 * quarter)
+        else if (2 * quarter <= _timeSeconds && _timeSeconds < 3 * quarter)
         {
-            float factor = (_time - 2 * quarter) / quarter;
+            float factor = (_timeSeconds - 2 * quarter) / quarter;
             return Color.Lerp(DayColor, DawnColor, factor);
         }
         else
         {
-            float factor = (_time - 3 * quarter) / quarter;
+            float factor = (_timeSeconds - 3 * quarter) / quarter;
             return Color.Lerp(DawnColor, NightColor, factor);
         }
     }
@@ -44,17 +43,17 @@ public class Clock : MonoBehaviour {
     void Start()
     {
         _day = 1;
-        _time = 0f;
+        _timeSeconds = 0f;
 
         StartCoroutine("UpdateTint");
     }
 
     void Update()
     {
-        _time += Timescale * Time.deltaTime;
-        if(_time > _secondsPerDay)
+        _timeSeconds += _timeScale * Time.deltaTime;
+        if(_timeSeconds > _secondsPerDay)
         {
-            _time = 0f;
+            _timeSeconds = 0f;
             _day++;
         }
     }
