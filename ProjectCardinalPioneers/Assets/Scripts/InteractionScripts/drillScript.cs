@@ -10,9 +10,10 @@ public class drillScript : MonoBehaviour
             StartCoroutine("Drill");       
     }
 
-    public void Drill(GameObject)
+    public void Drill(GameObject drill)
     {
-        
+        // Function to transform drill and mine resources
+    
     }
 
 }
