@@ -5,9 +5,12 @@ using UnityEngine;
 public class MenuRefHandler : MonoBehaviour {
 
     GameObject player;
-    GameObject Water;
-    GameObject Crops;
-    GameObject Power;
+
+    GameObject _water;
+    GameObject _ice;
+    GameObject _power;
+    GameObject _fuel;
+    GameObject _food;
 
     public GameObject Menu;
 
