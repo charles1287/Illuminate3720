@@ -5,14 +5,13 @@ using UnityEngine;
 public class Resources : MonoBehaviour {
     
     [HideInInspector]
-    public float _water = 20f;
+    public static float Water = 20f;
     [HideInInspector]
-    public float _ice = 20f;
+    public static float Ice = 20f;
     [HideInInspector]
-    public float _power = 20f;
+    public static float Power = 20f;
     [HideInInspector]
-    public float _fuel = 20f;
+    public static float Fuel = 20f;
     [HideInInspector]
-    public float _food = 20f;
-
+    public static float Food = 20f;
 }

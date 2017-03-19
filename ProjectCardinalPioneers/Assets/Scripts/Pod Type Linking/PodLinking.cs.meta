@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c82d5df0c9a680941a00d4d22b856a11
+timeCreated: 1489685608
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - AirPodPrefab: {fileID: 1685653726443050, guid: bc41991a895e1b04ebfb6a2d6309c174,
+      type: 2}
+  - WaterPodPrefab: {fileID: 1940935075540678, guid: b89b1035582b0af4fb049b858d807116,
+      type: 2}
+  - PowerPodPrefab: {fileID: 1216059706665674, guid: c900dacb1174fd541b9d8c83de71ce8f,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

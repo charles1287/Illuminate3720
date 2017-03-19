@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         UpdateWire();
 
         UpdateBattery();
+        
     }
 
     //Casts a ray and interacts with hit object
