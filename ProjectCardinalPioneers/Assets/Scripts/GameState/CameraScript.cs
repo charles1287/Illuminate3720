@@ -8,8 +8,7 @@ public class CameraScript : MonoBehaviour {
 
     public Material EffectMaterial;
     //public Color ViewTint;
-
-    GameObject _player;
+    
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
