@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class drillScript : MonoBehaviour
 {
+    float drillIceCapacity = 100f;
+    public float Ice = 0f;
+    public float drillIceRate = 2;
+    bool drillOn = false;
+
     private void Update()
     {
         if (Input.GetKeyDown("e"))
-            StartCoroutine("Drill");       
+            StartCoroutine("Interact");
     }
 
-    public void Drill(GameObject drill)
+    // Generate x amount of ice in Drill from y amount of Power over time.deltaTime
+    IEnumerator Interact()
     {
-        // Function to transform drill and mine resources
-    
-    }
+        if (drillOn == false)
+        {
+            drillOn = true;
 
+            while (Ice < drillIceCapacity)
+            {
+                Ice += Time.deltaTime * drillIceRate;
+                yield return null;
+            }
+            Ice = drillIceCapacity;
+
+            drillOn = false;
+        }
+
+
+      
+    }
 }

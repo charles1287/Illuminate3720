@@ -22,7 +22,7 @@ public class PodSlotHandler : MonoBehaviour {
                 GetComponent<Collider2D>().enabled = false;
 
                 //Activate the selection menu
-                other.transform.Find("Pod Select").gameObject.SetActive(true);
+                other.transform.Find("PodSelect").gameObject.SetActive(true);
             }
         }
     }
