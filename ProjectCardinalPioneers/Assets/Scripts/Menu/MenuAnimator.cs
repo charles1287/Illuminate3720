@@ -60,6 +60,7 @@ public class MenuAnimator : MonoBehaviour
             yield return null;
         }
         Set_buttonsInteractable(true);
+        transform.localScale = Vector3.one;
     }
 
     IEnumerator TurnOff()
@@ -73,5 +74,6 @@ public class MenuAnimator : MonoBehaviour
             transform.localScale -= new Vector3(_menuSpeed, _menuSpeed);
             yield return null;
         }
+        transform.localScale = Vector3.zero;
     }
 }
