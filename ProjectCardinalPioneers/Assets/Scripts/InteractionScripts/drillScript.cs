@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class drillScript : MonoBehaviour
 {
-    float drillIceCapacity = 100f;
+    public float drillIceCapacity = 100f;
     public float Ice = 0f;
-    public float drillIceRate = 2;
-    bool drillOn = false;
+    public float drillIceRate = 2f;
+
+    public bool drillOn = false;
 
     private void Update()
     {
