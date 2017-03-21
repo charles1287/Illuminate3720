@@ -13,30 +13,50 @@ public class WaterInteraction : MonoBehaviour
     public float Water = 0f;
     public float iceToWaterRate = 2f;
 
-    public bool drillConnected;
+    public GameObject ConnectedDrill;
 
     public Button processButton;
 
-    public void iceToWaterConversion()
+    void OnTriggerEnter2D(Collider2D other)
     {
-
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Drill")
+        if (other.tag == "Drill" && ConnectedDrill == null)
         {
-            if (Vector2.Distance(other.transform.position, transform.position) < 0.5)
-            {
-                other.transform.position = transform.position;
-                other.transform.rotation = transform.rotation;
-
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
-                drillConnected = true;
-            }
-            drillConnected = false;
+            ConnectDrill(other);
         }
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Drill")
+            other.GetComponent<drillScript>().canDrill = true;
+    }
+
+    public void ConnectDrill(Collider2D other)
+    {
+        other.transform.position = transform.position;
+        other.transform.rotation = transform.rotation;
+
+        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        ConnectedDrill = other.gameObject;
+
+        other.GetComponent<drillScript>().canDrill = false;
+    }
+
+    public void DisconnectDrill()
+    {
+        if (ConnectedDrill != null)
+        {
+            Rigidbody2D rb = ConnectedDrill.GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.None;
+            ConnectedDrill = null;
+        }
+    }
+
+  
+
+    
+
+
+}
