@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class WaterInteraction : MonoBehaviour
 {
@@ -11,19 +13,13 @@ public class WaterInteraction : MonoBehaviour
     public float Water = 0f;
     public float iceToWaterRate = 2f;
 
-    public bool drillConnected = false;
+    public bool drillConnected;
 
-    void meltAndPurifyWater()
+    public Button processButton;
+
+    public void iceToWaterConversion()
     {
-        while (drillConnected == true)
-        {
-            if(Ice != 0)
-            {
-                Water += Time.deltaTime * iceToWaterRate;
-                Power--;
-                Ice--;
-            }
-        }
+
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -40,8 +36,7 @@ public class WaterInteraction : MonoBehaviour
 
                 drillConnected = true;
             }
-
             drillConnected = false;
         }
     }
-}
+
