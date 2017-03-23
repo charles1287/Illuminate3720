@@ -33,6 +33,7 @@ public class WaterInteraction : MonoBehaviour
 
     public void ConnectDrill(Collider2D other)
     {
+        other.transform.parent = transform;
         other.transform.position = transform.position;
         other.transform.rotation = transform.rotation;
 
@@ -48,6 +49,8 @@ public class WaterInteraction : MonoBehaviour
     {
         if (ConnectedDrill != null)
         {
+            ConnectedDrill.transform.parent = null;
+
             Rigidbody2D rb = ConnectedDrill.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;
             ConnectedDrill = null;
