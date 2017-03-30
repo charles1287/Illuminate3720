@@ -56,7 +56,7 @@ public class ConnectionHandler : MonoBehaviour
 
         //Activate the selection menu from the pod shell
         if(otherPod.gameObject.tag == "Pod")
-            otherPod.Find("Pod Select").gameObject.SetActive(true);
+            otherPod.Find("Pod Select Obj").gameObject.SetActive(true);
     }
 
     void DeactivateConnection(Collider2D other)

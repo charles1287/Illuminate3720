@@ -7,6 +7,6 @@ public class RotationCorrection : MonoBehaviour
     //Reset Rotation to zero
 	void LateUpdate ()
     {
-        GetComponent<RectTransform>().rotation = Quaternion.identity;
+        transform.rotation = Quaternion.identity;
 	}
 }
