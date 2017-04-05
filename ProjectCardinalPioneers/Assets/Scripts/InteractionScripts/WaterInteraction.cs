@@ -9,7 +9,7 @@ public class WaterInteraction : MonoBehaviour
     BoxCollider2D _drillSlot;
 
     public float Power = 0f;
-    public float Ice = Resources.Ice;
+    public float Ice = Resources.s_Instance.Ice;
     public float Water = 0f;
     public float iceToWaterRate = 2f;
 
