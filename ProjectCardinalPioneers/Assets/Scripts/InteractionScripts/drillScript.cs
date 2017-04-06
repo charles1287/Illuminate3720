@@ -5,7 +5,7 @@ using UnityEngine;
 public class drillScript : MonoBehaviour
 {
     public float drillIceCapacity = 100f;
-    public float Ice = 0f;
+	public float Ice = Resources.Ice;
     public float drillIceRate = 15f;
 
     public bool drillOn = false;
@@ -51,7 +51,7 @@ public class drillScript : MonoBehaviour
                 yield return null;
             }
             
-            Ice = drillIceCapacity;
+           // Ice = drillIceCapacity;
             SetDrillState(false);
         }
     }
