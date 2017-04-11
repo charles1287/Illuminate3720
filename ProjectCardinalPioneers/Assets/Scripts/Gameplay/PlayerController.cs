@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
         _rb = GetComponent<Rigidbody2D>();
         _hook = GetComponent<DistanceJoint2D>();
         _wire = GetComponent<LineRenderer>();
-        
     }
     
 	// Update is called once per frame

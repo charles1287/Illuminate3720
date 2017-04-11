@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Resources : MonoBehaviour
 {
-    [Serializable]
 	public float Water = 0f;
 	public float Power = 0f;
 	public float Food = 0f;
