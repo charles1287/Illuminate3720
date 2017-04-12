@@ -10,23 +10,14 @@ public class Resources : MonoBehaviour
 	public float Food = 0f;
 	public float Ice = 0f;
 	public float Fuel = 0f;
+	public float drillIce = drillScript.drillIce;
 
 	public static Resources s_Instance = null;
 
 	public static Resources instance {
 		
 		get {
-			if (s_Instance == null)
-				s_Instance = FindObjectOfType (typeof(Resources)) as Resources;
-							
-
-			if (s_Instance == null) {
-				GameObject resource = new GameObject ("Resources");
-				s_Instance = resource.AddComponent (typeof(Resources)) as Resources;
-				Debug.Log ("Could not locate a Resource object. / Resource was generated automatically.");
-			}
-
-			return s_Instance;
+			return Resources.s_Instance;
 		}	
 	}
 

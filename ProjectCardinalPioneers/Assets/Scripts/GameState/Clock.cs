@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
@@ -14,6 +15,11 @@ public class Clock : MonoBehaviour {
     public Color DawnColor;
     public Color DayColor;
     public Color NightColor;
+
+    Text _timerText;
+    Text _foodText;
+    Text _waterText;
+    Text _powerText;
 
     Color getTintColor()
     {
@@ -46,6 +52,12 @@ public class Clock : MonoBehaviour {
         _timeSeconds = 0f;
 
         StartCoroutine("UpdateTint");
+
+        _timerText = GameObject.Find("TimeText").GetComponent<Text>();
+        _foodText = GameObject.Find("FoodText").GetComponent<Text>();
+        _waterText = GameObject.Find("WaterText").GetComponent<Text>();
+        _powerText = GameObject.Find("PowerText").GetComponent<Text>();
+        StartCoroutine("UpdateTimerText");
     }
 
     void Update()
@@ -71,6 +83,19 @@ public class Clock : MonoBehaviour {
             }
 
             yield return null;
+        }
+    }
+
+    IEnumerator UpdateUI()
+    {
+        while (true)
+        {
+            _timerText.text = _timeSeconds.ToString();
+            _foodText.text = Resources.instance.Food.ToString();
+            _waterText.text = Resources.instance.Water.ToString();
+            _powerText.text = Resources.instance.Power.ToString();
+
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }
