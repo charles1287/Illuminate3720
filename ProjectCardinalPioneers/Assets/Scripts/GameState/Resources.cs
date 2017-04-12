@@ -10,7 +10,7 @@ public class Resources : MonoBehaviour
 	public float Power = 0f;
 	public float Food = 0f;
 	public float Fuel = 0f;
-	public float drillIce = 0f;
+	public float drillIce = drillScript.drillIce;
 
 
 	public static Resources s_Instance = null;
