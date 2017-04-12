@@ -57,7 +57,7 @@ public class Clock : MonoBehaviour {
         _foodText = GameObject.Find("FoodText").GetComponent<Text>();
         _waterText = GameObject.Find("WaterText").GetComponent<Text>();
         _powerText = GameObject.Find("PowerText").GetComponent<Text>();
-        StartCoroutine("UpdateTimerText");
+        StartCoroutine("UpdateUI");
     }
 
     void Update()
