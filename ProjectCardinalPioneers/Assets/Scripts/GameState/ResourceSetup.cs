@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourceSetup : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         if (Resources.s_Instance == null)
             Resources.s_Instance = FindObjectOfType(typeof(Resources)) as Resources;
 
