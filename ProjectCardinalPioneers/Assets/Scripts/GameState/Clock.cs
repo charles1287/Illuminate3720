@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _timeScale = 500f;
+    const float _realTimeSecondsPerDay = 210f;
+    const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
+    const float _betweenDelay = 3f;
 
     int _day;
     //The current time of the day represented as seconds
     public float _timeSeconds;
     
     public CameraScript cam;
+    public PlayerController player;
     public Color DawnColor;
     public Color DayColor;
     public Color NightColor;
@@ -23,29 +26,33 @@ public class Clock : MonoBehaviour {
 
     Color getTintColor()
     {
-        float quarter = _secondsPerDay / 4;
-        if(0.0 <= _timeSeconds && _timeSeconds < quarter)
+        float sixth = _secondsPerDay / 6;
+        if(0.0 <= _timeSeconds && _timeSeconds < sixth)
         {
-            float factor = (_timeSeconds) / quarter;
+            float factor = (_timeSeconds) / sixth;
             return Color.Lerp(NightColor, DawnColor, factor);
         }
-        else if (quarter <= _timeSeconds && _timeSeconds < 2 * quarter)
+        else if (sixth <= _timeSeconds && _timeSeconds < 2 * sixth)
         {
-            float factor = (_timeSeconds - quarter) / quarter;
+            float factor = (_timeSeconds - sixth) / sixth;
             return Color.Lerp(DawnColor, DayColor, factor);
         }
-        else if (2 * quarter <= _timeSeconds && _timeSeconds < 3 * quarter)
+        else if (2 * sixth <= _timeSeconds && _timeSeconds < 4 * sixth)
         {
-            float factor = (_timeSeconds - 2 * quarter) / quarter;
+            return DayColor;
+        }
+        else if(4 * sixth <= _timeSeconds && _timeSeconds < 5 * sixth)
+        {
+            float factor = (_timeSeconds - 4 * sixth) / sixth;
             return Color.Lerp(DayColor, DawnColor, factor);
         }
         else
         {
-            float factor = (_timeSeconds - 3 * quarter) / quarter;
+            float factor = (_timeSeconds - 5 * sixth) / sixth;
             return Color.Lerp(DawnColor, NightColor, factor);
         }
     }
-
+    
     void Start()
     {
         _day = 1;
@@ -68,6 +75,19 @@ public class Clock : MonoBehaviour {
             _timeSeconds = 0f;
             _day++;
         }
+    }
+    
+    IEnumerator NextDay()
+    {
+        player.enabled = false;
+
+        yield return new WaitForSeconds(_betweenDelay);
+
+        player.enabled = true;
+        //UpdateResources();
+
+        _timeSeconds = 0f;
+        _day++;
     }
 
     IEnumerator UpdateTint()
