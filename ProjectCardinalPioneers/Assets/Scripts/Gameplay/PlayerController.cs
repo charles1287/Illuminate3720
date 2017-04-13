@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
         _rb = GetComponent<Rigidbody2D>();
         _hook = GetComponent<DistanceJoint2D>();
         _wire = GetComponent<LineRenderer>();
+        
     }
     
 	// Update is called once per frame
@@ -29,6 +30,12 @@ public class PlayerController : MonoBehaviour {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         _rb.AddForce(MovementScale * Time.deltaTime * 60 * input.normalized);
+
+        if (_rb.velocity.magnitude > 0.01f)
+        {
+            float angle = -90 + Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
         #endregion
 
         #region Interact Input

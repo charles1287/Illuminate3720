@@ -17,7 +17,7 @@ public class PodLinking : MonoBehaviour
         Instantiate(AirPodPrefab, transform, false);
         selectMenu.SetActive(false);
 
-		AirPodPrefab += 1;
+		Resources.instance.airPod += 1;
     }
 
     public void MakePowerPod(GameObject selectMenu)
@@ -25,7 +25,7 @@ public class PodLinking : MonoBehaviour
         Instantiate(PowerPodPrefab, transform, false);
         selectMenu.SetActive(false);
 
-		PowerPodPrefab += 1;
+        Resources.instance.powerPod += 1;
     }
 
     public void MakeWaterPod(GameObject selectMenu)
@@ -33,6 +33,6 @@ public class PodLinking : MonoBehaviour
         Instantiate(WaterPodPrefab, transform, false);
         selectMenu.SetActive(false);
 
-		WaterPodPrefab += 1;
+        Resources.instance.waterPod += 1;
     }
 }

@@ -110,8 +110,9 @@ public class Clock : MonoBehaviour {
     {
         while (true)
         {
-           
-            _timerText.text = _timeSeconds.ToString();
+            int secondsLeft = (int) ((_secondsPerDay - _timeSeconds) * _realTimeSecondsPerDay / _secondsPerDay); 
+
+            _timerText.text = secondsLeft.ToString();
             _foodText.text = Resources.instance.Food.ToString();
             _waterText.text = Resources.instance.Water.ToString();
             _powerText.text = Resources.instance.Power.ToString();
