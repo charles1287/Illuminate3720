@@ -8,10 +8,10 @@ public class WaterInteraction : MonoBehaviour
 {
     BoxCollider2D _drillSlot;
 
-    public float Power = 0f;
-    public float Ice = 0f;
-    public float Water = 0f;
+    public float Ice = drillScript.drillIce;
     public float iceToWaterRate = 2f;
+
+	bool connected = false;
 
     public GameObject ConnectedDrill;
 
@@ -43,6 +43,7 @@ public class WaterInteraction : MonoBehaviour
         ConnectedDrill = other.gameObject;
 
         other.GetComponent<drillScript>().canDrill = false;
+		connected = true;
     }
 
     public void DisconnectDrill()
@@ -55,11 +56,20 @@ public class WaterInteraction : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
             ConnectedDrill = null;
         }
+
+		connected = false;
     }
 
-  
-
-    
-
+	IEnumerator processIce()
+	{
+		
+		while (connected == true && Resources.instance.Power > 0 && Ice > 0)
+		{
+			Resources.instance.Water += Ice * iceToWaterRate;
+			Ice--;
+			Resources.instance.Power--;
+		}
+		yield return null;
+	}
 
 }
