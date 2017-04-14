@@ -11,7 +11,7 @@ public class CameraScript : MonoBehaviour {
 
     void Update()
     {
-        Vector3 lerp = Vector2.Lerp(transform.position, FollowTarget.position, 0.03f);
+        Vector3 lerp = Vector2.Lerp(transform.position, FollowTarget.position, 0.07f);
         transform.position = new Vector3(lerp.x, lerp.y, transform.position.z);
     }
 

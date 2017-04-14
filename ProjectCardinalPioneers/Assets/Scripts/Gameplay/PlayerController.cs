@@ -31,11 +31,14 @@ public class PlayerController : MonoBehaviour {
 
         _rb.AddForce(MovementScale * Time.deltaTime * 60 * input.normalized);
 
+        SetAudio();
+
         if (_rb.velocity.magnitude > 0.01f)
         {
             float angle = -90 + Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+
         #endregion
 
         #region Interact Input
@@ -63,6 +66,14 @@ public class PlayerController : MonoBehaviour {
         
     }
 
+    void SetAudio()
+    {
+        float speed = _rb.velocity.magnitude;
+        AudioSource a = GetComponent<AudioSource>();
+        a.pitch = Mathf.Lerp(speed / 10, a.pitch, 0.05f);
+        a.volume = Mathf.Lerp(speed / 10, a.volume, 0.05f);
+    }
+
     //Casts a ray and interacts with hit object
     void FireInteract()
     {
@@ -87,6 +98,7 @@ public class PlayerController : MonoBehaviour {
             _wire.enabled = true;
             _hook.connectedAnchor = hitInfo.collider.transform.InverseTransformPoint(hitInfo.point);
             _hook.connectedBody = hitInfo.rigidbody;
+            _hook.distance = Vector2.Distance(transform.position, hitInfo.point);
         }
     }
 
