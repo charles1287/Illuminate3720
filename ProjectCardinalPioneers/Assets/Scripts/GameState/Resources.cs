@@ -8,6 +8,7 @@ public class Resources : MonoBehaviour
 	public float Water = 0f;
 	public float Food = 0f;
 	public float Fuel = 0f;
+    public float Air = 0f;
 
 	public int airPod = 0;
 	public int waterPod = 0;

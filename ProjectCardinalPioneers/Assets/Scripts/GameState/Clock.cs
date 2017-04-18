@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _realTimeSecondsPerDay = 15;
+    const float _realTimeSecondsPerDay = 210;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
 
@@ -23,6 +23,7 @@ public class Clock : MonoBehaviour {
     Text _foodText;
     Text _waterText;
     Text _powerText;
+    Text _airText;
     Text _dayText;
 
     Color getTintColor()
@@ -65,6 +66,7 @@ public class Clock : MonoBehaviour {
         _foodText = GameObject.Find("FoodText").GetComponent<Text>();
         _waterText = GameObject.Find("WaterText").GetComponent<Text>();
         _powerText = GameObject.Find("PowerText").GetComponent<Text>();
+        _airText = GameObject.Find("AirText").GetComponent<Text>();
         _dayText = GameObject.Find("DayText").GetComponent<Text>();
         StartCoroutine("UpdateUI");
         StartCoroutine("FadeDayText");
@@ -119,7 +121,8 @@ public class Clock : MonoBehaviour {
             _foodText.text = Resources.instance.Food.ToString();
             _waterText.text = Resources.instance.Water.ToString();
             _powerText.text = Resources.instance.Power.ToString();
-                        
+            _airText.text = Resources.instance.Air.ToString();
+
             yield return new WaitForSeconds(0.2f);
         }
     }
