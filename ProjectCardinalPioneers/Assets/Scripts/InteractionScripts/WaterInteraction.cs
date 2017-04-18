@@ -62,7 +62,7 @@ public class WaterInteraction : MonoBehaviour
     IEnumerator processIce()
     {
 
-        if (Resources.instance.Power > 0 && drillScript.drillIce > 0)
+        if (drillScript.drillIce > 0 && Resources.instance.Power > 0)
         {
             Resources.instance.Water += drillScript.drillIce * iceToWaterRate;
             drillScript.drillIce -= 10;
