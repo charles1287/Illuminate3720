@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _realTimeSecondsPerDay = 15;
+    const float _realTimeSecondsPerDay = 210;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
 
@@ -27,7 +27,7 @@ public class Clock : MonoBehaviour {
 
     Color getTintColor()
     {
-        float sixth = _secondsPerDay / 6;
+        float sixth = _secondsPerDay / 8;
         if(0.0 <= _timeSeconds && _timeSeconds < sixth)
         {
             float factor = (_timeSeconds) / sixth;
