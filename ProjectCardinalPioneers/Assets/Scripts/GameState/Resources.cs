@@ -14,7 +14,7 @@ public class Resources : MonoBehaviour
 	public int powerPod = 0;
 
 	public float Power = 0f;
-	public float powerRate = 3f;
+	public float powerRate = 0.5f;
 
 	public static Resources s_Instance = null;
 

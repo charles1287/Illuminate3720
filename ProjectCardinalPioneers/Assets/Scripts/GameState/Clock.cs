@@ -23,7 +23,7 @@ public class Clock : MonoBehaviour {
     Text _foodText;
     Text _waterText;
     Text _powerText;
-
+    
     Color getTintColor()
     {
         float sixth = _secondsPerDay / 6;
@@ -116,7 +116,7 @@ public class Clock : MonoBehaviour {
             _foodText.text = Resources.instance.Food.ToString();
             _waterText.text = Resources.instance.Water.ToString();
             _powerText.text = Resources.instance.Power.ToString();
-            
+                        
             yield return new WaitForSeconds(0.2f);
         }
     }
