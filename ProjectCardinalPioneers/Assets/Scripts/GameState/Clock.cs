@@ -28,7 +28,7 @@ public class Clock : MonoBehaviour {
 
     Color getTintColor()
     {
-        float sixth = _secondsPerDay / 6;
+        float sixth = _secondsPerDay / 8;
         if(0.0 <= _timeSeconds && _timeSeconds < sixth)
         {
             float factor = (_timeSeconds) / sixth;
