@@ -66,7 +66,7 @@ public class WaterInteraction : MonoBehaviour
         {
             Resources.instance.Water += drillScript.drillIce * iceToWaterRate;
             drillScript.drillIce -= 10;
-            Resources.instance.Power -= 10;
+            Resources.instance.Power -= 100;
         }
         yield return null;
     }
