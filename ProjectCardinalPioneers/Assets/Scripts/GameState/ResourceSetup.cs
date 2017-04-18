@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceSetup : MonoBehaviour {
+public class ResourceSetup : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake()
+    {
         if (Resources.s_Instance == null)
             Resources.s_Instance = FindObjectOfType(typeof(Resources)) as Resources;
 
@@ -16,9 +18,10 @@ public class ResourceSetup : MonoBehaviour {
             Debug.Log("Could not locate a Resource object. / Resource was generated automatically.");
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        Resources.instance.Power += Resources.instance.powerPod * Resources.instance.powerRate;
+    }
 }
