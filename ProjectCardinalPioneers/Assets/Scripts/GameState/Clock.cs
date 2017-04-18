@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _realTimeSecondsPerDay = 210f;
+    const float _realTimeSecondsPerDay = 15;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
 
@@ -23,7 +23,8 @@ public class Clock : MonoBehaviour {
     Text _foodText;
     Text _waterText;
     Text _powerText;
-    
+    Text _dayText;
+
     Color getTintColor()
     {
         float sixth = _secondsPerDay / 6;
@@ -64,7 +65,9 @@ public class Clock : MonoBehaviour {
         _foodText = GameObject.Find("FoodText").GetComponent<Text>();
         _waterText = GameObject.Find("WaterText").GetComponent<Text>();
         _powerText = GameObject.Find("PowerText").GetComponent<Text>();
+        _dayText = GameObject.Find("DayText").GetComponent<Text>();
         StartCoroutine("UpdateUI");
+        StartCoroutine("FadeDayText");
     }
 
     void Update()
@@ -72,22 +75,22 @@ public class Clock : MonoBehaviour {
         _timeSeconds += _timeScale * Time.deltaTime;
         if(_timeSeconds > _secondsPerDay)
         {
-            _timeSeconds = 0f;
-            _day++;
+            NextDay();
         }
     }
     
-    IEnumerator NextDay()
+    void NextDay()
     {
         player.enabled = false;
-
-        yield return new WaitForSeconds(_betweenDelay);
-
-        player.enabled = true;
         //UpdateResources();
 
         _timeSeconds = 0f;
         _day++;
+
+        _dayText.text = "Day " + _day.ToString();
+        StartCoroutine("FadeDayText");
+
+        ComponentSpawner.s_Instance.SpawnPod();
     }
 
     IEnumerator UpdateTint()
@@ -119,5 +122,25 @@ public class Clock : MonoBehaviour {
                         
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    IEnumerator FadeDayText()
+    {
+        while (_dayText.color.a < 1f)
+        {
+            _dayText.color = new Color(1f, 1f, 1f, _dayText.color.a + 0.005f);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(3);
+
+        player.enabled = true;
+
+        while (_dayText.color.a > 0f)
+        {
+            _dayText.color = new Color(1f, 1f, 1f, _dayText.color.a - 0.005f);
+            yield return null;
+        }
+
     }
 }
