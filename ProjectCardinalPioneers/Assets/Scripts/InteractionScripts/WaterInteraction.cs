@@ -53,7 +53,7 @@ public class WaterInteraction : MonoBehaviour
             ConnectedDrill.transform.parent = null;
 
             Rigidbody2D rb = ConnectedDrill.GetComponent<Rigidbody2D>();
-            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             ConnectedDrill = null;
         }
 

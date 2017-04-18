@@ -22,7 +22,7 @@ public class ConnectionHandler : MonoBehaviour
                 Transform otherRoot = other.attachedRigidbody.transform;
                 float distance = Vector2.Distance(otherRoot.position, transform.position);
                 float angleDifference = Mathf.RoundToInt(other.transform.rotation.eulerAngles.z) % 90;
-                if (distance < 0.5 && angleDifference < 20)
+                if (angleDifference < 35)
                 {
                     //This pod must be frozen and the other must be free
                     if (GetComponent<BoxCollider2D>().attachedRigidbody.constraints == RigidbodyConstraints2D.FreezeAll)
