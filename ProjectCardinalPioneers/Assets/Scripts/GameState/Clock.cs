@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
     const float _realTimeSecondsPerDay = 10;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
+    const float _totalDays = 1;
 
     int _day;
     //The current time of the day represented as seconds
@@ -83,16 +85,22 @@ public class Clock : MonoBehaviour {
     
     void NextDay()
     {
-        //UpdateResources();
-
         _timeSeconds = 0f;
         _day++;
 
-        _dayText.text = "Day " + _day.ToString();
-        StartCoroutine("FadeDayText");
+        if(_day > _totalDays)
+        {
+            SceneManager.LoadScene("EndScreen");
+        }
 
-        ComponentSpawner.s_Instance.SpawnPod();
-        ComponentSpawner.s_Instance.SpawnConnector();
+        else
+        {
+            _dayText.text = "Day " + _day.ToString();
+            StartCoroutine("FadeDayText");
+
+            ComponentSpawner.s_Instance.SpawnPod();
+            ComponentSpawner.s_Instance.SpawnConnector();
+        }
         
     }
 
