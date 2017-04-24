@@ -21,7 +21,6 @@ public class Resources : MonoBehaviour
 
     public static Resources instance
     {
-
         get
         {
             return Resources.s_Instance;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _realTimeSecondsPerDay = 210;
+    const float _realTimeSecondsPerDay = 10;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
 
@@ -83,7 +83,6 @@ public class Clock : MonoBehaviour {
     
     void NextDay()
     {
-        player.enabled = false;
         //UpdateResources();
 
         _timeSeconds = 0f;
@@ -93,6 +92,8 @@ public class Clock : MonoBehaviour {
         StartCoroutine("FadeDayText");
 
         ComponentSpawner.s_Instance.SpawnPod();
+        ComponentSpawner.s_Instance.SpawnConnector();
+        
     }
 
     IEnumerator UpdateTint()
@@ -136,8 +137,6 @@ public class Clock : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(3);
-
-        player.enabled = true;
 
         while (_dayText.color.a > 0f)
         {
