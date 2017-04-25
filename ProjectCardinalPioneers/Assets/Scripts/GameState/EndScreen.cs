@@ -13,10 +13,9 @@ public class EndScreen : MonoBehaviour {
 
     void Start()
     {
-        FoodText.text = Resources.s_Instance.Food.ToString();
+        FoodText.text = Resources.s_Instance.Air.ToString();
         WaterText.text = Resources.s_Instance.Water.ToString();
         PowerText.text = Resources.s_Instance.Power.ToString();
-        TotalText.text = (Resources.s_Instance.Food + Resources.s_Instance.Water + Resources.s_Instance.Power).ToString();
     }
 
 	public void MainMenu()
