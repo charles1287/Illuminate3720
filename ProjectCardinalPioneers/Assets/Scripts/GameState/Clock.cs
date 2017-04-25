@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _realTimeSecondsPerDay = 10;
+    const float _realTimeSecondsPerDay = 60;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
-    const float _totalDays = 1;
+    const float _totalDays = 10;
 
     int _day;
     //The current time of the day represented as seconds
@@ -95,10 +95,11 @@ public class Clock : MonoBehaviour {
 
         else
         {
-            _dayText.text = "Sol " + _day.ToString();
+            _dayText.text = "Day " + _day.ToString();
             StartCoroutine("FadeDayText");
 
             ComponentSpawner.s_Instance.SpawnPod();
+            ComponentSpawner.s_Instance.SpawnConnector();
             ComponentSpawner.s_Instance.SpawnConnector();
         }
         
