@@ -5,8 +5,8 @@ using UnityEngine;
 public class drillScript : MonoBehaviour
 {
     public float drillIceCapacity = 100f;
-	public static float drillIce = 0f;
-	public float Ice;
+    public static float drillIce = 0f;
+    public float Ice;
     public float drillIceRate = 15f;
 
     public bool drillOn = false;
@@ -14,7 +14,7 @@ public class drillScript : MonoBehaviour
 
     public void StartDrill()
     {
-        if(!drillOn && canDrill)
+        if (!drillOn && canDrill)
             StartCoroutine("BeginDrilling");
     }
 
@@ -26,12 +26,15 @@ public class drillScript : MonoBehaviour
 
     void SetDrillState(bool on)
     {
+        on = false;
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (on)
+        if (!on)
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             drillOn = true;
         }
+
         else
         {
             rb.constraints = RigidbodyConstraints2D.None;
@@ -39,7 +42,6 @@ public class drillScript : MonoBehaviour
         }
     }
 
-    // Generate x amount of ice in Drill from y amount of Power over time.deltaTime
     IEnumerator BeginDrilling()
     {
         if (drillOn == false)
@@ -49,11 +51,11 @@ public class drillScript : MonoBehaviour
             while (drillIce < drillIceCapacity)
             {
                 drillIce += Time.deltaTime * drillIceRate;
-				Ice = drillIce;
+                Ice = drillIce;
                 yield return null;
             }
-            
-           // Ice = drillIceCapacity;
+
+            Ice = drillIceCapacity;
             SetDrillState(false);
         }
     }

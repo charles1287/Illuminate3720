@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Clock : MonoBehaviour {
     const float _secondsPerDay = 88800f;
-    const float _realTimeSecondsPerDay = 10;
+    const float _realTimeSecondsPerDay = 15;
     const float _timeScale = _secondsPerDay / _realTimeSecondsPerDay;
     const float _betweenDelay = 3f;
-    const float _totalDays = 1;
+    const float _totalDays = 10;
 
     int _day;
     //The current time of the day represented as seconds
@@ -27,6 +27,7 @@ public class Clock : MonoBehaviour {
     Text _powerText;
     Text _airText;
     Text _dayText;
+    Text _iceText;
 
     Color getTintColor()
     {
@@ -70,6 +71,7 @@ public class Clock : MonoBehaviour {
         _powerText = GameObject.Find("PowerText").GetComponent<Text>();
         _airText = GameObject.Find("AirText").GetComponent<Text>();
         _dayText = GameObject.Find("DayText").GetComponent<Text>();
+        _iceText = GameObject.Find("IceText").GetComponent<Text>();
         StartCoroutine("UpdateUI");
         StartCoroutine("FadeDayText");
     }
@@ -131,6 +133,7 @@ public class Clock : MonoBehaviour {
             _waterText.text = Resources.instance.Water.ToString();
             _powerText.text = Resources.instance.Power.ToString();
             _airText.text = Resources.instance.Air.ToString();
+            _iceText.text = drillScript.drillIce.ToString();
 
             yield return new WaitForSeconds(0.2f);
         }
