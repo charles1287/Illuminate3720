@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TutorialText : MonoBehaviour {
 
-	public float letterPause = 0.02f;
+	public float letterPause = 0.1f;
 
 	string message;
 	Text tutTextComp;
